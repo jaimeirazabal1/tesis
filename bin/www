@@ -56,7 +56,9 @@ io.use(function(socket, next) {
 // Iniciando uma conexão com Socket.IO.
 io.sockets.on('connection', function (client) {
   var session = client.handshake.session;
- 
+  client.on("cambiar_status_solicitud",function(id){
+    client.broadcast.emit('cambiar_status_solicitud', {id : id});
+  })
   client.on('login', function (msg) {
     if (session.user != "undefined" && session.user) {
       client.broadcast.emit('toClient', {usuario : session.user.rows[0].correo});

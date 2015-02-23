@@ -4,7 +4,7 @@ var user = function(){
 	var respuesta;
 	var obj = {};
 	obj.find = function(callback){
-		client.query('SELECT * from "user"',function(err,result){
+		client.query('SELECT * from "usuario"',function(err,result){
 			if (err) {
 				console.log(err)
 			};
@@ -16,7 +16,7 @@ var user = function(){
 		obj.isNewEmail(objeto.correo,function(r){
 			
 			if (r<1) {
-				client.query('INSERT INTO "user" (correo,password) values ($1,$2)',[objeto.correo,objeto.password],function(err,result){
+				client.query('INSERT INTO "usuario" (correo,password) values ($1,$2)',[objeto.correo,objeto.password],function(err,result){
 					if (err) {
 						console.log(err)
 					};
@@ -28,7 +28,7 @@ var user = function(){
 		}); 
 	}
 	obj.delete = function(id,callback){
-		client.query('DELETE FROM "user" WHERE id = '+id,function(err,result){
+		client.query('DELETE FROM "usuario" WHERE id = '+id,function(err,result){
 			if (err) {
 				console.log(err)
 			};
@@ -37,7 +37,7 @@ var user = function(){
 	}
 	obj.changePass = function(id,newpass,callback){
 		newpass = md5(newpass);
-		client.query('UPDATE "user" set password=$1 WHERE id = '+id,[newpass],function(err,result){
+		client.query('UPDATE "usuario" set password=$1 WHERE id = '+id,[newpass],function(err,result){
 			if (err) {
 				console.log(err)
 			};
@@ -47,7 +47,7 @@ var user = function(){
 	}
 	obj.isNewEmail = function(email,callback){
 		
-		client.query('select * from "user" WHERE correo = $1 ',[email],function(err,result){
+		client.query('select * from "usuario" WHERE correo = $1 ',[email],function(err,result){
 			if (err) {
 				console.log(err)
 			};
@@ -59,7 +59,7 @@ var user = function(){
 		console.log(obj)
 		password = md5(obj.password);
 		email = obj.correo;
-		client.query('SELECT * from "user" where correo =$1 and password =$2',[email,password],function(err,result){
+		client.query('SELECT * from "usuario" where correo =$1 and password =$2',[email,password],function(err,result){
 			if (err) {
 				callback(err)
 			};

@@ -71,7 +71,7 @@ $(document).ready(function(){
 		var id = $(this).attr("id");
 		$("#btn_cambio_clave").attr("ide",id)
 	})
-	var socket = io('http://localhost:3000');
+	var socket = io('http://172.16.60.50:3000');
 	socket.emit('login',{login:true});
 
 	socket.on('toClient', function (msg) {
