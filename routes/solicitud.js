@@ -36,10 +36,8 @@ router.post('/nueva',function(req,res){
 		if (err) {
 			console.log(err)
 			res.send({correcto:false,error:err});
-
 		}else{
-
-			res.send({correcto:true,error:err});
+			res.send({correcto:true,error:err,datos:req.body});
 		}
 	})
 })

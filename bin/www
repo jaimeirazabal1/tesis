@@ -71,6 +71,9 @@ io.sockets.on('connection', function (client) {
       session.user = false;
     }
   });
+  client.on('nueva_solicitud', function (datos) {
+      client.broadcast.emit('nueva_solicitud', datos);
+  });
   setInterval(function(){
     model_user.find(function(result,error){
       if (result.rowCount > userCount) {

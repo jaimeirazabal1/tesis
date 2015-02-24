@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	var socket = io('http://172.16.60.50:3000');
+	//var socket = io('http://172.16.60.50:3000');
+	var socket = io('http://localhost:3000');
 	socket.on('cambiar_status_solicitud',function(obj){
 		var id_ = obj.id.id
 		este = $("#"+id_);
@@ -17,6 +18,17 @@ $(document).ready(function(){
 		}
 	});
 
+	socket.on("nueva_solicitud",function(datos){
+		$("#cuerpo_tabla").append("<tr>"+
+									  "<td>"+datos.prioridad_id+"</td>"+
+									  "<td>"+datos.descripcion+"</td>"+
+									  "<td>"+datos.fecha+"</td>"+
+									  "<td>"+datos.correo+"</td>"+
+									  "<td>"+datos.solicitante+"</td>"+
+									  "<td>"+datos.telefono_solicitante+"</td>"+
+									  "<td>"+datos.ubicacion+"</td>"+
+								  "<tr>")
+	})
 
 	$(document).on("click",".solicitud_activacion",function(){
 		$(document).off("click",".solicitud_activacion",function(){})
