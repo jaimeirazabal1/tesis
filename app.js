@@ -17,13 +17,14 @@ var solicitud = require('./routes/solicitud');
 var app = express();
 var cookieSecret = "secret phrase";
 
-
 var store = new session.MemoryStore()
 app.set("store",store)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.set("cookie", cookie);
+
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(cookie);

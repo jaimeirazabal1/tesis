@@ -8,7 +8,7 @@ const SECRET = 'chave-secreta-aqui!';
 var app = require('../app');
 var debug = require('debug')('app-tesis:server');
 var http = require('http').createServer(app)
-var io = require('socket.io').listen(http)
+var io = require('socket.io').listen(http, {log:true, origins:'*:*'})
 var model_user = require("../models/user")();
 var model_visitantes = require("../models/visitantes")();
 var userCount = 0;
@@ -27,6 +27,11 @@ var port = parseInt(process.env.PORT, 10) || 3000;
 app.set('port', port);
 var cookie = app.get("cookie")
 var store = app.get("store")
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 /**
  * Create HTTP server.
  */

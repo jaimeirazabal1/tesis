@@ -4,6 +4,7 @@ var model_user = require("../models/user")();
 var model_prioridad = require("../models/prioridad")();
 var model_solicitud = require("../models/solicitud")();
 
+
 /* GET home page. */
 router.get('/', function(req, res) {
 	if (req.session.user) {
